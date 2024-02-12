@@ -9,7 +9,7 @@ import {
 import toast from "react-hot-toast";
 import useAuth from "../../Hook/useAuth";
 import { useEffect, useState } from "react";
-import useAxios from "../../Hook/useAxios";
+import usePublicAxios from "../../Hook/usePublicAxios";
 
 const Login = () => {
   //state
@@ -19,7 +19,7 @@ const Login = () => {
   const { login,googleLogin } = useAuth();
 
   //useAxios hook
-  const axios = useAxios();
+  const axios = usePublicAxios();
 
   //navigate
   const navigate = useNavigate();

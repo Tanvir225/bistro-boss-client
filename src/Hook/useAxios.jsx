@@ -5,6 +5,7 @@ const instance = axios.create({
 })
 const useAxios = () => {
     return instance
+    
 };
 
 

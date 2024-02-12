@@ -1,76 +1,77 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
-import useAxios from "../Hook/useAxios";
+import usePublicAxios from "../Hook/usePublicAxios";
 
+export const AuthContext = createContext(null);
 
-export const AuthContext = createContext(null)
+const googleProvider = new GoogleAuthProvider();
 
-const googleProvider = new GoogleAuthProvider()
+const AuthProvider = ({ children }) => {
+  //state
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-const AuthProvider = ({children}) => {
+  //axios hook
+  const axios = usePublicAxios();
 
-    //state
-    const [user,setUser] = useState(null)
-    const [loading,setLoading] = useState(true)
+  //create user
+  const signUp = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-    //axios hook
-    const axios = useAxios()
+  //login user
+  const login = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-    //create user
-    const signUp = (email,password)=>{
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth,email,password)
-    }
+  //logout user
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
-    //login user
-    const login = (email,password)=>{
-        setLoading(true)
-        return signInWithEmailAndPassword(auth,email,password)
-    }
+  //googleLogin
+  const googleLogin = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
 
-    //logout user
-    const logOut = ()=>{
-        setLoading(true)
-        return signOut(auth)
-    }
+  //user unsubscribe by useEffect
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+      console.log("current user", currentUser);
+      if (currentUser) {
+        axios.post("/jwt", { email: currentUser?.email }).then((res) => {
+          console.log(res.data);
+        });
+      }
+    });
+    return () => unsubscribe();
+  }, [axios]);
 
-    //googleLogin
-    const googleLogin = ()=>{
-        return  signInWithPopup(auth,googleProvider)
-    }
-
-
-    //user unsubscribe by useEffect
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth,(currentUser)=> {
-            setUser(currentUser)
-            setLoading(false)
-            console.log('current user',currentUser);
-            if (currentUser) {
-                axios.post('/jwt',{email:currentUser?.email})
-                .then(res=>{
-                    console.log(res.data);
-                })
-            }
-        })
-        return ()=>unsubscribe();
-    },[]) 
-
-    //object
-    const authValue = {
-        user,
-        loading,
-        signUp,
-        login,
-        logOut,
-        googleLogin
-    }
-    return (
-        <AuthContext.Provider value={authValue}>
-            {children}
-        </AuthContext.Provider>
-    );
+  //object
+  const authValue = {
+    user,
+    loading,
+    signUp,
+    login,
+    logOut,
+    googleLogin,
+  };
+  return (
+    <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

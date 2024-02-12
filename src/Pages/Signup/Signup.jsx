@@ -4,14 +4,14 @@ import loginImg from "../../assets/others/authentication1.png";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import useAuth from "../../Hook/useAuth";
-import useAxios from "../../Hook/useAxios";
+import usePublicAxios from "../../Hook/usePublicAxios";
 
 const Signup = () => {
   //useContext
   const { signUp, googleLogin } = useAuth();
 
   //useAxios hook
-  const axios = useAxios();
+  const axios = usePublicAxios();
 
   //navigate
   const navigate = useNavigate();

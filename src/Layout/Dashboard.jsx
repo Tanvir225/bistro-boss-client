@@ -11,6 +11,7 @@ import {
 
 import { FaList, FaMortarPestle, FaUsers } from "react-icons/fa"
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hook/useAdmin";
 
 const Dashboard = () => {
   const userSidebar = (
@@ -52,8 +53,8 @@ const Dashboard = () => {
   );
 
   //TODO: add admin sidebar when implementing admin dashboard
-  const isAdmin = true;
-
+  const [isAdmin] = useAdmin();
+  
   const adminSidebar = ( 
     <>
       <li>
