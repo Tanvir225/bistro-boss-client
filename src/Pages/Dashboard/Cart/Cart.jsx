@@ -3,6 +3,7 @@ import Heading from "../../../Components/Heading/Heading";
 import useCart from "../../../Hook/useCart";
 import useAxios from "../../../Hook/useAxios";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   //useCart hook
@@ -32,9 +33,8 @@ const Cart = () => {
       confirmButtonText: "Delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`/carts/${id}`)
-        .then((result) => {
-          if (result?.data?.deletedCount>0) {
+        axios.delete(`/carts/${id}`).then((result) => {
+          if (result?.data?.deletedCount > 0) {
             console.log(result);
             Swal.fire({
               title: "Deleted!",
@@ -44,7 +44,7 @@ const Cart = () => {
             });
             refetch();
           }
-        })
+        });
       }
     });
   };
@@ -57,9 +57,11 @@ const Cart = () => {
         <h2 className="text-xl font-bold">
           Total Price: {carts.reduce((a, b) => a + b.price, 0)} $
         </h2>
-        <button className="btn lg:w-32 btn-outline text-white bg-[#D1A054]">
-          Pay
-        </button>
+        <Link to={"/dashboard/payments"}>
+          <button className="btn lg:w-32 btn-outline text-white bg-[#D1A054]">
+            Pay
+          </button>
+        </Link>
       </div>
 
       <div className="overflow-x-auto lg:px-5 ">

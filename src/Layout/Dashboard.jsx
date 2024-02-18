@@ -63,7 +63,7 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/"}>
+        <NavLink to={"add-items"}>
           <FaMortarPestle  className="text-xl"></FaMortarPestle >Add item
         </NavLink>
       </li>
