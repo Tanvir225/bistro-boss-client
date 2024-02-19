@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import useAxios from "../../../Hook/useAxios";
 import useCart from "../../../Hook/useCart";
 import useAuth from "../../../Hook/useAuth";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [error,setError] = useState('')
   const [clientSecret,setClientSecret] = useState('')
+  //navigate
+  const navigate = useNavigate()
 
   //useCart hooks
   const [cart] = useCart()
@@ -23,8 +27,8 @@ const CheckOutForm = () => {
     // Create a new PaymentMethod object in the Stripe API.
     axios.post("/create-payment-intent",{price: total})
     .then(res=>{
-        console.log(res.data.client_secret);
-        setClientSecret(res.data.client_secret)
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret)
     })
   },[axios,total])
 
@@ -55,7 +59,7 @@ const CheckOutForm = () => {
     }
 
     //confirm payment intent
-    const {paymentIntent , error: confirmationError}=await stripe.confirmCardPayment(clientSecret,{
+    const {paymentIntent,error:confirmationError}=await stripe.confirmCardPayment(clientSecret,{
         payment_method:{
             card:card,
             billing_details:{
@@ -70,6 +74,27 @@ const CheckOutForm = () => {
     }
     if (paymentIntent) {
         console.log(paymentIntent);
+        if (paymentIntent.status === "succeeded") {
+          toast.success("You payment successfully")
+
+        }
+
+        const paymentInfo = {
+          amount : total,
+          name: user?.displayName,
+          email : user?.email,
+          date: new Date(),
+          cartIds : cart.map(item =>  item._id),
+          menuIds : cart.map(item => item.menuId),
+          transaction_id : paymentIntent?.id,
+          status : 'pending'
+        }
+
+        const result = await axios.post("/payments",paymentInfo)
+        console.log(result.data);
+
+        navigate("/dashboard/cart")
+      
     }
   };
 

@@ -12,8 +12,13 @@ import {
 import { FaList, FaMortarPestle, FaUsers } from "react-icons/fa"
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hook/useAdmin";
+import useCart from "../Hook/useCart";
 
 const Dashboard = () => {
+
+  //usecart hooks
+  const [cart] = useCart()
+
   const userSidebar = (
     <>
       <li>
@@ -24,7 +29,7 @@ const Dashboard = () => {
       <li>
         <NavLink to={"cart"}>
           <AiOutlineShoppingCart className="text-xl"></AiOutlineShoppingCart> My
-          Cart
+          Cart - {cart.length}
         </NavLink>
       </li>
       <li>

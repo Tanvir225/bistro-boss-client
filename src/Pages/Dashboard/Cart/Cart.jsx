@@ -8,10 +8,12 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   //useCart hook
   const [carts, isLoading, refetch] = useCart();
+  const total = carts.reduce((a, b) => a + b.price, 0).toFixed(2) ;
 
   //useAxios hook
   const axios = useAxios();
 
+  refetch();
   //loading
   if (isLoading) {
     return (
@@ -54,14 +56,14 @@ const Cart = () => {
       <Heading subHeading="My cart" Heading="Wanna Add More"></Heading>
       <div className="flex justify-around  items-center">
         <h2 className="text-xl font-bold">Total Order: {carts.length}</h2>
-        <h2 className="text-xl font-bold">
-          Total Price: {carts.reduce((a, b) => a + b.price, 0)} $
-        </h2>
-        <Link to={"/dashboard/payments"}>
-          <button className="btn lg:w-32 btn-outline text-white bg-[#D1A054]">
-            Pay
-          </button>
-        </Link>
+        <h2 className="text-xl font-bold">Total Price: {total} $</h2>
+        {total >0  && (
+          <Link to={"/dashboard/payments"}>
+            <button className="btn lg:w-32 btn-outline text-white bg-[#D1A054]">
+              Pay
+            </button>
+          </Link>
+        )}
       </div>
 
       <div className="overflow-x-auto lg:px-5 ">
