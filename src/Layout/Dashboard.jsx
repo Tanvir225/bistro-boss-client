@@ -9,7 +9,7 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 
-import { FaList, FaMortarPestle, FaUsers } from "react-icons/fa"
+import { FaFirstOrder, FaList, FaMortarPestle, FaUsers } from "react-icons/fa"
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hook/useAdmin";
 import useCart from "../Hook/useCart";
@@ -39,7 +39,7 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/"}>
+        <NavLink to={"payments-history"}>
           <AiOutlineAlipay className="text-xl"></AiOutlineAlipay> Payment
           History
         </NavLink>
@@ -63,7 +63,7 @@ const Dashboard = () => {
   const adminSidebar = ( 
     <>
       <li>
-        <NavLink to={"/"}>
+        <NavLink to={"admin-home"}>
           <AiOutlineHome className="text-xl"></AiOutlineHome>Admin Home
         </NavLink>
       </li>
@@ -75,6 +75,11 @@ const Dashboard = () => {
       <li>
         <NavLink to={"manage-items"}>
           <FaList className="text-xl"></FaList>Manage items
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={"manage-orders"}>
+          <FaFirstOrder className="text-xl"></FaFirstOrder>Manage orders
         </NavLink>
       </li>
       <li>

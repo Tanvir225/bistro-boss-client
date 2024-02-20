@@ -7,9 +7,11 @@ import toast from "react-hot-toast";
 import useCart from "../../Hook/useCart";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
+
 const Navbar = () => {
   //useContext
   const { user, logOut } = useContext(AuthContext);
+
 
   //useCart hook
   const [carts] = useCart();

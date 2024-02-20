@@ -9,14 +9,17 @@ const useAdmin = () => {
 
     //ten-stack query
     const {data:isAdmin,isPending} = useQuery({
+      
         queryKey: ["admin",user?.email], 
         queryFn: async()=>{
             const result = await axios.get(`admin/${user?.email}`)
             return result.data?.isAdmin
         }
+
     })
 
     return [isAdmin,isPending]
 };
+
 
 export default useAdmin;

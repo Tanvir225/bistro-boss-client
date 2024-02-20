@@ -3,9 +3,9 @@ import bgImage from "../../../assets/home/featured.jpg"
 
 const Parallex = () => {
     return (
-        <div className="bg-cover bg-fixed bg-no-repeat relative h-[80vh]  my-16 rounded-lg" style={{ backgroundImage: `url(${bgImage})`, objectFit: 'cover' }}>
+        <div className="bg-cover bg-fixed bg-no-repeat relative h-[90vh]  my-16 rounded-lg" style={{ backgroundImage: `url(${bgImage})`, objectFit: 'cover' }}>
             <div className="w-full bg-black h-full bg-opacity-55">
-                <div className="text-white absolute left-[10%] right-[10%]">
+                <div className="text-white absolute left-[10%]  right-[10%]">
                     <Heading subHeading="Check it Out" Heading="From our menu"></Heading>
                     <div className="flex flex-col items-center justify-center gap-10 lg:flex-row">
                         <img src={bgImage} className="w-96 rounded-lg" alt="featured Image" />

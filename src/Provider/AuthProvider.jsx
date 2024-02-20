@@ -55,6 +55,7 @@ const AuthProvider = ({ children }) => {
         axios.post("/jwt", { email: currentUser?.email }).then((res) => {
           console.log(res.data);
         });
+
       }
     });
     return () => unsubscribe();

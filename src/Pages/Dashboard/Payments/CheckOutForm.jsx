@@ -5,6 +5,7 @@ import useCart from "../../../Hook/useCart";
 import useAuth from "../../../Hook/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const CheckOutForm = () => {
   const stripe = useStripe();
@@ -83,7 +84,7 @@ const CheckOutForm = () => {
           amount : total,
           name: user?.displayName,
           email : user?.email,
-          date: new Date(),
+          date: moment().format('MMMM Do YYYY, h:mm:ss a'),
           cartIds : cart.map(item =>  item._id),
           menuIds : cart.map(item => item.menuId),
           transaction_id : paymentIntent?.id,
@@ -93,7 +94,7 @@ const CheckOutForm = () => {
         const result = await axios.post("/payments",paymentInfo)
         console.log(result.data);
 
-        navigate("/dashboard/cart")
+        navigate("/dashboard/payments-history")
       
     }
   };
