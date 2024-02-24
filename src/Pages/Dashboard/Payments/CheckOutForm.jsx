@@ -86,7 +86,7 @@ const CheckOutForm = () => {
           email : user?.email,
           date: moment().format('MMMM Do YYYY, h:mm:ss a'),
           cartIds : cart.map(item =>  item._id),
-          menuIds : cart.map(item => item.menuId),
+          menuNames : cart.map(item => item.name),
           transaction_id : paymentIntent?.id,
           status : 'pending'
         }

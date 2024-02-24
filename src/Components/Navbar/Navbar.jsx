@@ -1,17 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Css/Navbar.css";
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useCart from "../../Hook/useCart";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-
+import useAuth from "../../Hook/useAuth";
+import useAdmin from "../../Hook/useAdmin";
 
 const Navbar = () => {
-  //useContext
-  const { user, logOut } = useContext(AuthContext);
-
+  //useAuth and useAdmin hooks
+  const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
 
   //useCart hook
   const [carts] = useCart();
@@ -29,7 +28,7 @@ const Navbar = () => {
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
-     
+
       <li>
         <NavLink to={"/menu"}>Menus</NavLink>
       </li>
@@ -37,9 +36,17 @@ const Navbar = () => {
         <NavLink to={"/order/salad"}>Order</NavLink>
       </li>
 
-      <li>
-        <NavLink to={"/dashboard"}>Dashboard</NavLink>
-      </li>
+      {user && isAdmin && (
+        <li>
+          <NavLink to={"/dashboard/admin-home"}>Dashboard</NavLink>
+        </li>
+      )}
+
+      {user && !isAdmin && (
+        <li>
+          <NavLink to={"/dashboard"}>Dashboard</NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -84,12 +91,14 @@ const Navbar = () => {
       <div className="">
         {user ? (
           <div className="flex justify-center items-center gap-5">
-            <NavLink to={"dashboard/cart"}>
-              <div className="text-md flex justify-center items-center btn-sm btn">
-                <AiOutlineShoppingCart></AiOutlineShoppingCart>-
-                <p>{carts.length}</p>
-              </div>
-            </NavLink>
+            {user && !isAdmin && (
+              <NavLink to={"dashboard/cart"}>
+                <div className="text-md flex justify-center items-center btn-sm ">
+                  <AiOutlineShoppingCart></AiOutlineShoppingCart>-
+                  <p>{carts.length}</p>
+                </div>
+              </NavLink>
+            )}
 
             <img
               className="w-12 rounded-full"

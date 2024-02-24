@@ -1,8 +1,6 @@
 import {
-  AiFillAccountBook,
   AiFillInteraction,
   AiOutlineAlipay,
-  AiOutlineCalendar,
   AiOutlineHome,
   AiOutlineMenu,
   AiOutlineShop,
@@ -13,6 +11,7 @@ import { FaFirstOrder, FaList, FaMortarPestle, FaUsers } from "react-icons/fa"
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hook/useAdmin";
 import useCart from "../Hook/useCart";
+import DashNav from "../Components/Dashboard/DashNav";
 
 const Dashboard = () => {
 
@@ -32,12 +31,7 @@ const Dashboard = () => {
           Cart - {cart.length}
         </NavLink>
       </li>
-      <li>
-        <NavLink to={"/"}>
-          <AiOutlineCalendar className="text-xl"></AiOutlineCalendar>{" "}
-          Reservation
-        </NavLink>
-      </li>
+     
       <li>
         <NavLink to={"payments-history"}>
           <AiOutlineAlipay className="text-xl"></AiOutlineAlipay> Payment
@@ -49,15 +43,11 @@ const Dashboard = () => {
           <AiFillInteraction className="text-xl"></AiFillInteraction> Review
         </NavLink>
       </li>
-      <li>
-        <NavLink to={"/"}>
-          <AiFillAccountBook className="text-xl"></AiFillAccountBook> My Booking
-        </NavLink>
-      </li>
+      
     </>
   );
 
-  //TODO: add admin sidebar when implementing admin dashboard
+  // admin sidebar api 
   const [isAdmin] = useAdmin();
   
   const adminSidebar = ( 
@@ -80,11 +70,6 @@ const Dashboard = () => {
       <li>
         <NavLink to={"manage-orders"}>
           <FaFirstOrder className="text-xl"></FaFirstOrder>Manage orders
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to={"/"}>
-          <AiFillAccountBook className="text-xl"></AiFillAccountBook>Manage Booking
         </NavLink>
       </li>
       <li>
@@ -132,6 +117,7 @@ const Dashboard = () => {
         {sharedSidebar}
       </div>
       <div className="flex-1 p-5">
+        <DashNav></DashNav>
         <Outlet></Outlet>
       </div>
     </div>

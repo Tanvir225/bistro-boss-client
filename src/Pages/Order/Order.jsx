@@ -52,7 +52,7 @@ const Order = () => {
 
       <div className="container mx-auto px-5 lg:px-0">
         <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList className={"text-center space-x-5"}>
+          <TabList className={"text-center space-x-5 space-y-5"}>
             {categories?.map((cat) => (
               <Tab key={cat} className="btn btn-warning">
                 {cat}

@@ -3,7 +3,7 @@ import Heading from "../../../Components/Heading/Heading";
 import toast from "react-hot-toast";
 import axios from "axios";
 import useAxios from "../../../Hook/useAxios";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 
@@ -13,14 +13,12 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const UpdateItem = () => {
 
-    //useLoader date
-    const data  = useLoaderData()
-    console.log(data);
-
   //useAxios hook
   const axiosSecure = useAxios();
   //navigate
   const navigate = useNavigate();
+
+ 
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {

@@ -134,8 +134,8 @@ const AddItems = () => {
             />
           </div>
 
-          <div className="text-center">
-            <button className="btn btn-outline w-72">
+          <div className="text-center pb-16 lg:pb-0">
+            <button className="btn btn-outline w-72 ">
               Add Items <FaMortarPestle></FaMortarPestle>
             </button>
           </div>

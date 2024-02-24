@@ -5,11 +5,11 @@ import useAuth from "./useAuth";
 
 const useAdmin = () => {
     const axios = useAxios()
-    const {user} = useAuth()
+    const {user,loading} = useAuth()
 
     //ten-stack query
     const {data:isAdmin,isPending} = useQuery({
-      
+        enabled : !loading,
         queryKey: ["admin",user?.email], 
         queryFn: async()=>{
             const result = await axios.get(`admin/${user?.email}`)
@@ -20,6 +20,7 @@ const useAdmin = () => {
 
     return [isAdmin,isPending]
 };
+
 
 
 export default useAdmin;
