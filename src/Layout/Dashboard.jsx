@@ -39,7 +39,7 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to={"/"}>
+        <NavLink to={"add-review"}>
           <AiFillInteraction className="text-xl"></AiFillInteraction> Review
         </NavLink>
       </li>

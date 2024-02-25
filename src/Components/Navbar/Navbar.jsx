@@ -93,7 +93,7 @@ const Navbar = () => {
           <div className="flex justify-center items-center gap-5">
             {user && !isAdmin && (
               <NavLink to={"dashboard/cart"}>
-                <div className="text-md flex justify-center items-center btn-sm ">
+                <div className="text-md flex justify-center items-center  btn-sm btn">
                   <AiOutlineShoppingCart></AiOutlineShoppingCart>-
                   <p>{carts.length}</p>
                 </div>

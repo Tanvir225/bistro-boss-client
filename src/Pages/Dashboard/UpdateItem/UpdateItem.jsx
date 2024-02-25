@@ -3,7 +3,7 @@ import Heading from "../../../Components/Heading/Heading";
 import toast from "react-hot-toast";
 import axios from "axios";
 import useAxios from "../../../Hook/useAxios";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 
@@ -18,6 +18,8 @@ const UpdateItem = () => {
   //navigate
   const navigate = useNavigate();
 
+  //useLoader data
+  const item = useLoaderData()
  
 
   const { register, handleSubmit, reset } = useForm();
@@ -40,9 +42,9 @@ const UpdateItem = () => {
         price: parseFloat(data.price),
       }; 
 
-      const result = await axiosSecure.patch("/menus", menu);
-      //console.log(result.data);
-      if (result.data.insertedId) {
+      const result = await axiosSecure.patch(`menus/${item._id}`, menu);
+      console.log(result.data);
+      if (result.data.modifiedCount>0) {
         navigate("/dashboard/manage-items");
         reset();
         toast.success("menu updated successfully");
@@ -64,6 +66,7 @@ const UpdateItem = () => {
             <input
               {...register("name")}
               type="text"
+              defaultValue={item?.name || ""}
               placeholder="name"
               className="input input-bordered"
               required
@@ -78,7 +81,7 @@ const UpdateItem = () => {
               </label>
               <select
                 {...register("category")}
-                defaultValue="default"
+                defaultValue={item?.category || "default"}
                 className="select select-bordered w-full"
               >
                 <option disabled value="default">
@@ -101,6 +104,7 @@ const UpdateItem = () => {
               <input
                 {...register("price")}
                 type="text"
+                defaultValue={ item?.price || 0}
                 placeholder="price"
                 className="input input-bordered"
                 required
@@ -117,6 +121,7 @@ const UpdateItem = () => {
             <textarea
               className="textarea textarea-bordered"
               {...register("recipe")}
+              defaultValue={item?.recipe || ''}
               placeholder="Details"
               rows={5}
             ></textarea>

@@ -18,6 +18,7 @@ import UpdateItem from "../Pages/Dashboard/UpdateItem/UpdateItem";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ManageOrders from "../Pages/Dashboard/ManageOrders/ManageOrders";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import UserReview from "../Pages/Dashboard/userReview/userReview";
 
 const myCreatedRoute = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ const myCreatedRoute = createBrowserRouter([
                 path:"payments-history",
                 element:<PaymentHistory></PaymentHistory>
             },
+            {
+                path:"add-review",
+                element:<UserReview></UserReview>
+            },
 
             //admin router
             {
@@ -85,6 +90,7 @@ const myCreatedRoute = createBrowserRouter([
             {
                 path:"update-items/:id",
                 element:<AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+                loader:({params})=> fetch(`http://localhost:5000/api/v1/menus/${params.id}`)
             },
             {
                 path:"manage-items",
