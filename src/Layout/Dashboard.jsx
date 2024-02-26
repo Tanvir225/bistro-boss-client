@@ -12,6 +12,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hook/useAdmin";
 import useCart from "../Hook/useCart";
 import DashNav from "../Components/Dashboard/DashNav";
+import Navbar from "../Components/Navbar/Navbar";
 
 const Dashboard = () => {
 
@@ -116,9 +117,14 @@ const Dashboard = () => {
 
         {sharedSidebar}
       </div>
-      <div className="flex-1 p-5">
+      <div className="w-full lg:flex-1 ">
+        <div className="lg:hidden">
+          <Navbar></Navbar>
+        </div>
         <DashNav></DashNav>
+        <div className="p-5">
         <Outlet></Outlet>
+        </div>
       </div>
     </div>
   );

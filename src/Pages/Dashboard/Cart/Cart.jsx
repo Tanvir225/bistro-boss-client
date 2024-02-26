@@ -13,7 +13,7 @@ const Cart = () => {
   //useAxios hook
   const axios = useAxios();
 
-  refetch();
+
   //loading
   if (isLoading) {
     return (
@@ -50,7 +50,7 @@ const Cart = () => {
       }
     });
   };
-
+  refetch()
   return (
     <div className="space-y-5">
       <Heading subHeading="My cart" Heading="Wanna Add More"></Heading>

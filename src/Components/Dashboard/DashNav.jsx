@@ -63,7 +63,7 @@ const DashNav = () => {
         </NavLink>
       </button>
       <button>
-        <NavLink to={"/"}>
+        <NavLink to={"add-review"}>
           <AiFillInteraction className="text-2xl"></AiFillInteraction> Review
         </NavLink>
       </button>

@@ -20,6 +20,7 @@ const UserReview = () => {
     //console.log(data.name);
     const review = {
       name: user?.displayName,
+      email: user?.email,
       date : moment().format('MMMM Do YYYY'),
       rating: parseInt(data.rating),
       details: data.details,
@@ -48,6 +49,22 @@ const UserReview = () => {
             disabled
             placeholder="name"
             defaultValue={user?.displayName || ""}
+            className="input input-bordered"
+            required
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">
+              Your email <span className="text-red-600">*</span>
+            </span>
+          </label>
+          <input
+            {...register("email")}
+            type="email"
+            disabled
+            placeholder="email"
+            defaultValue={user?.email || ""}
             className="input input-bordered"
             required
           />

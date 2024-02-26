@@ -13,7 +13,7 @@ const PaymentHistory = () => {
       </h2>
 
       <div className="overflow-x-auto">
-        <table className="table  w-full text-center my-5">
+        <table className="table table-auto text-center my-5">
           {/* head */}
           <thead>
             <tr>
