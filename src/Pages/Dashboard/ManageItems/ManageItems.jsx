@@ -51,10 +51,10 @@ const ManageItems = () => {
     <div>
       <Heading subHeading="Hurry Up" Heading="Manage Items"></Heading>
       <div className="overflow-x-auto">
-        <table className="table w-full text-center">
+        <table className="table table-auto min-w-max text-center">
           {/* head */}
-          <thead>
-            <tr>
+          <thead >
+            <tr className="bg-orange-400">
               <th>SL</th>
               <th>Image</th>
               <th>Item</th>

@@ -37,7 +37,7 @@ const Login = () => {
     const forms = e.target;
     const email = forms.email.value;
     const password = forms.password.value;
-    console.log(email, password);
+    //console.log(email, password);
 
     //login functionality
     login(email, password)

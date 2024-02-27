@@ -7,14 +7,14 @@ import {
 import { NavLink } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import useAdmin from "../../Hook/useAdmin";
-
+import "./MobileNavCSS/MobileNav.css"
 const MobileNav = () => {
   //useAuth and useAdmin hooks
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="btm-nav z-20 lg:hidden">
+    <div className="btm-nav  z-20 lg:hidden">
       <button>
         <NavLink to={"/"}>
           <AiOutlineHome className="text-2xl"></AiOutlineHome>

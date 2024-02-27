@@ -5,7 +5,7 @@ import Heading from "../../../Components/Heading/Heading";
 
 const ManageOrders = () => {
   //useOrders hook and useAxios hook
-  const [Orders, isLoading, refetch] = useOrders();
+  const [Orders, , refetch] = useOrders();
   const axios = useAxios();
   //update user order status form admin
   const handleUpdateStatus = async (id) => {
@@ -24,10 +24,10 @@ const ManageOrders = () => {
         Total Payments : {Orders.length}
       </h2>
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table table-auto min-w-max text-center">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-orange-400">
               <th>Sl</th>
               <th>Name</th>
               <th>email</th>
@@ -50,7 +50,7 @@ const ManageOrders = () => {
                 <td>
                   <button
                     onClick={() => handleUpdateStatus(order._id)}
-                    className="btn btn-sm bg-red-600 text-white"
+                    className={`btn btn-sm  text-white ${order.status === 'pending' ? 'bg-red-600' : 'bg-green-500'}`}
                   >
                     {order.status}
                   </button>

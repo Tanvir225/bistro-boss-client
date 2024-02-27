@@ -35,7 +35,7 @@ const UserReview = () => {
     }
   };
   return (
-    <div>
+    <div className="my-16">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
         <div className="form-control">
           <label className="label">

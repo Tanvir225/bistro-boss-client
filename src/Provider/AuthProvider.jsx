@@ -58,9 +58,10 @@ const AuthProvider = ({ children }) => {
         });
 
       }
+     
     });
     return () => unsubscribe();
-  }, [axios]);
+  }, [axios,user]);
 
   //object
   const authValue = {

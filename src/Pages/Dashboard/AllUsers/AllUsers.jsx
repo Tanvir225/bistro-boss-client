@@ -67,10 +67,10 @@ const AllUsers = () => {
       <Heading subHeading="All users" Heading="Manage Users"></Heading>
       <h1 className="text-3xl font-bold">Total Users : {users.length}</h1>
       <div className="overflow-x-auto">
-        <table className="table w-full text-center">
+        <table className="table table-auto min-w-max text-center">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-orange-400">
               <th>SL</th>
               <th>Image</th>
               <th>Name</th>

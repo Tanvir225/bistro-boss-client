@@ -67,7 +67,7 @@ const Cart = () => {
       </div>
 
       <div className="overflow-x-auto lg:px-5 ">
-        <table className="table w-full text-center">
+        <table className="table min-w-max table-auto text-center">
           {/* head */}
           <thead className="bg-[#D1A054]  text-white">
             <tr>

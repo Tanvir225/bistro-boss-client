@@ -3,8 +3,8 @@ import usePaymentHistory from "../../../Hook/usePaymentHistory";
 
 const PaymentHistory = () => {
   //paymentHistory routes
-  const [paymentHistory,isLoading,refetch] = usePaymentHistory();
-  refetch()
+  const [paymentHistory, , refetch] = usePaymentHistory();
+  refetch();
   return (
     <div>
       <Heading subHeading="At a glance" Heading="Payment history"></Heading>
@@ -13,10 +13,10 @@ const PaymentHistory = () => {
       </h2>
 
       <div className="overflow-x-auto">
-        <table className="table table-auto text-center my-5">
+        <table className="table table-auto min-w-max text-center my-5">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-orange-400">
               <th>Sl</th>
               <th>Name</th>
               <th>email</th>
@@ -38,7 +38,18 @@ const PaymentHistory = () => {
                 <td>{payment.menuNames.join(" , ")}</td>
                 <td>{payment.amount} $</td>
                 <td>{payment.transaction_id}</td>
-                <td className="text-red-600 font-bold">{payment.status}</td>
+                <td>
+                 
+                  <button
+                    className={ ` btn btn-sm font-bold text-white ${
+                      payment.status === "pending"
+                        ? "bg-red-600"
+                        : "bg-green-500"
+                    }`}
+                  >
+                    {payment.status}
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

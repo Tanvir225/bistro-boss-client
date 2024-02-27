@@ -6,13 +6,14 @@ const useCart = () => {
   //axios hook
   const axios = useAxios();
   //useAuth hook
-  const { user } = useAuth();
+  const { user,loading } = useAuth();
 
   const {
     data: carts = [],
     isLoading,
     refetch,
   } = useQuery({
+    enabled: !!user  && !loading,
     queryKey: ["carts", user?.email],
     queryFn: async () => {
       if (!user?.email) {
