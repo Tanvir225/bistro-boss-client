@@ -9,9 +9,9 @@ const MenuCard = ({ menu }) => {
           style={{ borderRadius: "0px 200px 200px 200px" }}
         />
         <div className="flex gap-5">
-          <div className="text-gray-500 space-y-4">
+          <div className="flex-1 text-gray-500 space-y-4">
             <h2 className="text-2xl font-semibold">{menu.name} --------</h2>
-            <p className="text-lg font-semibold">{menu.recipe}</p>
+            <p className="text-sm font-semibold">{menu.recipe}</p>
           </div>
           <p className="text-[#BB8506] text-xl font-bold">${menu.price}</p>
         </div>
